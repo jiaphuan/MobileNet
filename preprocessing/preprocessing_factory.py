@@ -64,7 +64,8 @@ def get_preprocessing(name, is_training=False):
       'vgg_a': vgg_preprocessing,
       'vgg_16': vgg_preprocessing,
       'vgg_19': vgg_preprocessing,
-      'mobilenet': mobilenet_preprocessing
+      'mobilenet': mobilenet_preprocessing,
+      'squeezenet': mobilenet_preprocessing
   }
 
   if name not in preprocessing_fn_map:

@@ -1,14 +1,14 @@
 #!/bin/bash
 #
 # This script performs the following operations:
-# 1. Trains a MobileNet model on the Imagenet training set.
+# 1. Trains a SqueezeNet model on the Imagenet training set.
 # 2. Evaluates the model on the Imagenet validation set.
 #
 # Usage:
-# ./scripts/train_mobilenet_on_imagenet.sh
+# ./scripts/train_squeezenet_on_imagenet.sh
 
 # Where the checkpoint and logs will be saved to.
-TRAIN_DIR=/home/jiaphuan/exp/mobilenet
+TRAIN_DIR=/home/jiaphuan/exp/squeezenet
 
 # Where the dataset is saved to.
 DATASET_DIR=/home/linjuny/dataset/imagenet2012/
@@ -19,8 +19,8 @@ python train_image_classifier.py \
   --dataset_name=imagenet \
   --dataset_split_name=train \
   --dataset_dir=${DATASET_DIR} \
-  --model_name=mobilenet \
-  --preprocessing_name=mobilenet \
+  --model_name=squeezenet \
+  --preprocessing_name=squeezenet \
   --width_multiplier=1.0 \
   --max_number_of_steps=1000000 \
   --batch_size=64 \
@@ -44,4 +44,4 @@ python eval_image_classifier.py \
   --dataset_name=imagenet \
   --dataset_split_name=validation \
   --dataset_dir=${DATASET_DIR} \
-  --model_name=mobilenet
+  --model_name=squeezenet
