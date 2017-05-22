@@ -335,7 +335,7 @@ def _get_init_fn():
   """
   # If a checkpoint exists in the train_dir. Then we'll resume training
   if tf.train.latest_checkpoint(FLAGS.train_dir):
-    print('%s: Resume training from %s' % (datetime.now(), tf.train.latest_checkpoint(FLAGS.train_dir)))
+    print('Resume training from %s' % (tf.train.latest_checkpoint(FLAGS.train_dir)))
     variables_to_restore = slim.get_model_variables()
     init_assign_op, init_feed_dict = slim.assign_from_checkpoint(tf.train.latest_checkpoint(FLAGS.train_dir), variables_to_restore)
 
