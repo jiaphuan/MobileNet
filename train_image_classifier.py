@@ -333,19 +333,15 @@ def _get_init_fn():
   Returns:
     An init function run by the supervisor.
   """
-  # If a checkpoint exists in the train_dir. Then we'll resume training
-  if tf.train.latest_checkpoint(FLAGS.train_dir):
-    print('Resume training from %s' % (tf.train.latest_checkpoint(FLAGS.train_dir)))
-    variables_to_restore = slim.get_model_variables()
-    init_assign_op, init_feed_dict = slim.assign_from_checkpoint(tf.train.latest_checkpoint(FLAGS.train_dir), variables_to_restore)
-
-    # Create an initial assignment function.
-    def InitAssignFn(sess):
-        sess.run(init_assign_op, init_feed_dict)
-
-    return InitAssignFn
-
   if FLAGS.checkpoint_path is None:
+    return None
+
+  # Warn the user if a checkpoint exists in the train_dir. Then we'll be
+  # ignoring the checkpoint anyway.
+  if tf.train.latest_checkpoint(FLAGS.train_dir):
+    tf.logging.info(
+        'Ignoring --checkpoint_path because a checkpoint already exists in %s'
+        % FLAGS.train_dir)
     return None
 
   exclusions = []
