@@ -299,6 +299,10 @@ def preprocess_image(image, height, width,
     ValueError: if user does not provide bounding box
   """
   if is_training:
-    return preprocess_for_train(image, height, width, bbox, fast_mode)
+    image = preprocess_for_train(image, height, width, bbox, fast_mode)
   else:
-    return preprocess_for_eval(image, height, width)
+    image = preprocess_for_eval(image, height, width)
+  mean = tf.constant([103.94, 116.78, 123.68], dtype=tf.float32)
+  mean = tf.reshape(mean, [1,1,3])
+  image = image - mean
+  return image

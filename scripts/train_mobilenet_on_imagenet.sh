@@ -22,19 +22,20 @@ python train_image_classifier.py \
   --model_name=mobilenet \
   --preprocessing_name=mobilenet \
   --width_multiplier=1.0 \
-  --max_number_of_steps=1000000 \
-  --batch_size=64 \
+  --max_number_of_steps=500000 \
+  --batch_size=256 \
   --save_interval_secs=240 \
   --save_summaries_secs=240 \
   --log_every_n_steps=100 \
-  --optimizer=rmsprop \
+  --optimizer=sgd \
   --rmsprop_decay=0.9 \
   --opt_epsilon=1.0\
   --learning_rate=0.1 \
+  --learning_rate_decay_type=polynomial \
   --learning_rate_decay_factor=0.1 \
   --momentum=0.9 \
   --num_epochs_per_decay=30.0 \
-  --weight_decay=0.0 \
+  --weight_decay=0.0001 \
   --num_clones=1
 
 # Run evaluation.
